@@ -14,18 +14,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-public class LoginSystem extends javax.swing.JFrame {
+public class Registration extends javax.swing.JFrame {
     
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginSystem.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Registration.class.getName());
 
   
-    public LoginSystem() {
+    public Registration() {
         initComponents();
         try {
             Connection();
         } catch (SQLException ex) {
-            System.getLogger(LoginSystem.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(Registration.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
        
     }
@@ -50,7 +50,7 @@ public class LoginSystem extends javax.swing.JFrame {
                 System.out.println("Connection successful");
             }
         } catch (ClassNotFoundException ex) {
-            System.getLogger(LoginSystem.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(Registration.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
      
     
@@ -174,9 +174,9 @@ public class LoginSystem extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLogPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jButton2))
@@ -207,6 +207,11 @@ public class LoginSystem extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Login login = new Login();
+        login.setVisible(true);
+        login.pack();
+        login.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -222,7 +227,16 @@ public class LoginSystem extends javax.swing.JFrame {
            username = txtLogUsername.getText();
            password = txtLogPassword.getText();
            
-           String queryRegister = "INSERT into accoubtdetails (accUsername, accPassword)" + "VALUES ("+username+","+password+")";
+           String queryRegister = "INSERT into accoubtdetails (accUsername, accPassword)" 
+                   + "VALUES ("+username+","+password+")";
+            try {
+                st.execute(queryRegister);
+            } catch (SQLException ex) {
+                System.getLogger(Registration.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
+            JOptionPane.showMessageDialog(new JFrame(), "Data added successfully");
+            txtLogUsername.setText(" ");
+            txtLogPassword.setText(" ");
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -248,7 +262,7 @@ public class LoginSystem extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LoginSystem().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Registration().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
