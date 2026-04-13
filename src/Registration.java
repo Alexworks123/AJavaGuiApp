@@ -227,16 +227,15 @@ public class Registration extends javax.swing.JFrame {
            username = txtLogUsername.getText();
            password = txtLogPassword.getText();
            
-           String queryRegister = "INSERT into accoubtdetails (accUsername, accPassword)" 
-                   + "VALUES ("+username+","+password+")";
+           String queryRegister = "INSERT INTO accountdetails (accUsername, accPassword)" + "VALUES ('"+username+"','"+password+"')";
             try {
                 st.execute(queryRegister);
             } catch (SQLException ex) {
-                System.getLogger(Registration.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+               Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, (String) null, ex);
             }
             JOptionPane.showMessageDialog(new JFrame(), "Data added successfully");
-            txtLogUsername.setText(" ");
-            txtLogPassword.setText(" ");
+            txtLogUsername.setText("");
+            txtLogPassword.setText("");
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
