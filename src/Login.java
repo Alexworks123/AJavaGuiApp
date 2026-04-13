@@ -189,6 +189,10 @@ public class Login
         username = txtUsername.getText();
         password = txtPassword.getText();
         String queryLogin = "SELECT * FROM accountdetails WHERE accUsername = '"+ username + "' AND accPassword = '"+ password +"'";
+        if (username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter username and password");
+              return;
+      }
       
         try {
             pst = con.prepareStatement(queryLogin);
